@@ -1,0 +1,32 @@
+17:12:54 **** Incremental Build of configuration Debug for project I2C ****
+make all 
+'Building file: ../src/main.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -DDEBUG -DUSE_FULL_ASSERT -DSTM32F051 -DUSE_STDPERIPH_DRIVER -DHSE_VALUE=8000000 -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32f0-stdperiph" -std=gnu11 -MMD -MP -MF"src/main.d" -MT"src/main.o" -c -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:18:20: warning: unused variable 'data2' [-Wunused-variable]
+  volatile uint32_t data2 = (uint32_t)110;
+                    ^
+../src/main.c:17:19: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+  volatile uint8_t data = (uint8_t)105;
+                   ^
+'Finished building: ../src/main.c'
+' '
+'Building target: I2C.elf'
+'Invoking: Cross ARM C++ Linker'
+arm-none-eabi-g++ -mcpu=cortex-m0 -mthumb -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"I2C.map" --specs=nano.specs -o "I2C.elf"  ./system/src/stm32f0-stdperiph/stm32f0xx_adc.o ./system/src/stm32f0-stdperiph/stm32f0xx_can.o ./system/src/stm32f0-stdperiph/stm32f0xx_cec.o ./system/src/stm32f0-stdperiph/stm32f0xx_comp.o ./system/src/stm32f0-stdperiph/stm32f0xx_crc.o ./system/src/stm32f0-stdperiph/stm32f0xx_crs.o ./system/src/stm32f0-stdperiph/stm32f0xx_dac.o ./system/src/stm32f0-stdperiph/stm32f0xx_dbgmcu.o ./system/src/stm32f0-stdperiph/stm32f0xx_dma.o ./system/src/stm32f0-stdperiph/stm32f0xx_exti.o ./system/src/stm32f0-stdperiph/stm32f0xx_flash.o ./system/src/stm32f0-stdperiph/stm32f0xx_gpio.o ./system/src/stm32f0-stdperiph/stm32f0xx_i2c.o ./system/src/stm32f0-stdperiph/stm32f0xx_iwdg.o ./system/src/stm32f0-stdperiph/stm32f0xx_misc.o ./system/src/stm32f0-stdperiph/stm32f0xx_pwr.o ./system/src/stm32f0-stdperiph/stm32f0xx_rcc.o ./system/src/stm32f0-stdperiph/stm32f0xx_rtc.o ./system/src/stm32f0-stdperiph/stm32f0xx_spi.o ./system/src/stm32f0-stdperiph/stm32f0xx_syscfg.o ./system/src/stm32f0-stdperiph/stm32f0xx_tim.o ./system/src/stm32f0-stdperiph/stm32f0xx_usart.o ./system/src/stm32f0-stdperiph/stm32f0xx_wwdg.o  ./system/src/newlib/_cxx.o ./system/src/newlib/_exit.o ./system/src/newlib/_sbrk.o ./system/src/newlib/_startup.o ./system/src/newlib/_syscalls.o ./system/src/newlib/assert.o  ./system/src/diag/Trace.o ./system/src/diag/trace_impl.o  ./system/src/cortexm/_initialize_hardware.o ./system/src/cortexm/_reset_hardware.o ./system/src/cortexm/exception_handlers.o  ./system/src/cmsis/system_stm32f0xx.o ./system/src/cmsis/vectors_stm32f0xx.o  ./src/_write.o ./src/main.o   
+'Finished building target: I2C.elf'
+' '
+'Invoking: Cross ARM GNU Create Flash Image'
+arm-none-eabi-objcopy -O ihex "I2C.elf"  "I2C.hex"
+'Finished building: I2C.hex'
+' '
+'Invoking: Cross ARM GNU Print Size'
+arm-none-eabi-size --format=berkeley "I2C.elf"
+   text	   data	    bss	    dec	    hex	filename
+   1620	     76	    268	   1964	    7ac	I2C.elf
+'Finished building: I2C.siz'
+' '
+
+17:12:55 Build Finished (took 1s.36ms)
+

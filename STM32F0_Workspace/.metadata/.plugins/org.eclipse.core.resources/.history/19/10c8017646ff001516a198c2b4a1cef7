@@ -1,0 +1,113 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "diag/Trace.h"
+#include "stm32f0xx.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wmissing-declarations"
+#pragma GCC diagnostic ignored "-Wreturn-type"
+
+int main(int argc, char* argv[])
+{
+	RCC->AHBENR |= 0x000A0000;
+	GPIOC->MODER &= 0xFFF0FFFF;
+	GPIOC->MODER |= 0x00050000;
+	
+	volatile uint8_t data = (uint8_t)105;
+	volatile uint32_t data2 = (uint32_t)110;
+    
+	// Enable I2C RCC
+	RCC->APB1ENR |= (1 << 22);
+	
+	// Setup GPIO to AF
+	// Use PB10 (SCL) and PB11 (SDA)
+	RCC->AHBENR |= (1 << 18); // Enable GPIOB clock.
+	GPIOB->MODER |= (1 << 21); // Set PB10 to AF.
+	GPIOB->MODER |= (1 << 23); // Set PB11 to AF.
+	GPIOB->AFR[1] |= (1 << 8); // Set PB10 to AF1.
+	GPIOB->AFR[1] |= (1 << 12); // Set PB11 to AF1.
+	
+	// Set GPIO to open-drain
+	GPIOB->OTYPER |= (1 << 10); // Set PB10 to open-drain.
+	GPIOB->OTYPER |= (1 << 11); // Set PB11 to open-drain.
+	
+	// Configure I2C CR1
+	I2C2->CR1 &= ~(1 << 0);
+	I2C2->CR1 |= (2 << 8); // Set digital filter to 2.
+	I2C2->CR1 |= (1 << 1);
+	
+	// Configure TIMINGR
+	I2C2->TIMINGR |= (0xB << 28);
+	I2C2->TIMINGR |= (0x13 << 0);
+	I2C2->TIMINGR |= (0xF << 8);
+	I2C2->TIMINGR |= (0x2 << 16);
+	I2C2->TIMINGR |= (0x4 << 20);
+	
+	// Start I2C peripheral
+	I2C2->CR1 |= (1 << 0);
+	
+	// Clear CR2
+	I2C2->CR2 = (uint32_t)0;
+	
+	// Make sure that the bus isn't busy.
+	while((I2C2->ISR&I2C_ISR_BUSY)==I2C_ISR_BUSY) {
+		GPIOC->ODR |= (1 << 8);
+	}
+	GPIOC->ODR &= ~(1 << 8);
+	
+	// Set to 1 byte transfer and slave address)
+	// 0110 1000 = 0x68
+	I2C2->CR2 |= (1 << 16) | (0x68 << 1);
+	
+	// Start communication
+	I2C2->CR2 |= I2C_CR2_START;
+	
+	// Check to see if TX is empty
+	if((I2C2->ISR & I2C_ISR_TXE)==I2C_ISR_TXE) {
+		I2C2->TXDR= 117;
+	}
+	data2 = I2C2->TXDR;
+	
+	// Wait for transfer to complete
+	while((I2C2->ISR & I2C_ISR_TC) == 0) {
+		GPIOC->ODR |= (1 << 9);
+	}
+	GPIOC->ODR &= ~(1 << 9);
+	
+	// Clear CR2
+	I2C2->CR2 = (uint32_t)0;
+	
+	// Set CR2 for 1 byte transfer, read mode and slave address.
+	I2C2->CR2 |= (1 << 16) | I2C_CR2_RD_WRN | (0x68 << 1);
+	
+	// Start  communication
+	I2C2->CR2 |= I2C_CR2_START;
+	
+	// Wait for transfer to complete
+	while((I2C2->ISR & I2C_ISR_TC) == 0) {
+		GPIOC->ODR |= (1 << 9);
+	}
+	GPIOC->ODR &= ~(1 << 9);
+	
+	// Set stop condition
+	I2C2->CR2 |= I2C_CR2_STOP;
+	
+	// Check to see if the bus is busy.
+	while((I2C2->ISR & I2C_ISR_BUSY) == I2C_ISR_BUSY) {
+		GPIOC->ODR |= (1 << 8);
+	}
+	GPIOC->ODR &= ~(1 << 8);
+	
+	// Clear stop bit flag
+	I2C2->ICR |= I2C_ICR_STOPCF;
+	
+	data = I2C2->RXDR;
+	
+	while(1) {
+		
+	}
+}
+
+#pragma GCC diagnostic pop
+

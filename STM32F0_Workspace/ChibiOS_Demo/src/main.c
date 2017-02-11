@@ -1,0 +1,175 @@
+#include "ch.h"
+#include "hal.h"
+
+
+/**
+ * Blue LED blinker thread, times are in milliseconds.
+ */
+static WORKING_AREA(waThread1, 128); /* Calling the 'working area' 
+                                      * allocates the specified size
+                                      * and alignment of the current
+                                      * working stack.
+                                      */
+static msg_t Thread1(void *arg) {
+    (void)arg;
+
+    /* Enter the infinite loop. Threads always have an infinite loop
+     * and should only leave if the thread is closed or suspended. 
+     * If thread reaches return statement it is the same as calling
+     * chThdExit()
+    */
+    while (1) {
+
+        /* Clear PC9. This is a quick and useful function. 
+         * Go to /os/hal/include/pal.h to see some of the
+         * other pal functions available. pal stands for
+         * Port Abstraction Layer.
+         */
+        palClearPad(GPIOC, 9);
+
+        /* The 'Sleep' functions are used in cyclic mode to 
+         * put the thread to sleep for a specified amount of
+         * time. Once the progam counter reaches this function
+         * it will lock the thread out of the 'ready' state
+         * until the time has elapsed. When the scheduler calls
+         * this thread again, the program counter will point to
+         * the line under 'Sleep' function, bring in this thread's
+         * stack, and continue operation.
+         *
+         * More information is available in the online Reference Manual, 
+         * ChibiOS/RT->Modules->Kernel->Basic Kernel Services->Threads
+         *
+         * NOTE: The ms time parameter will be rounded to the 
+         *       nearest system tick equivalent. 
+         */
+        chThdSleepMilliseconds(250);
+
+        palSetPad(GPIOC, 9); // Set PC9 HIGH
+
+        chThdSleepMilliseconds(250); // Put thread asleep for 250ms
+    }
+
+    // return type 'msg_t' is actually 'uint16_t'
+    return RDY_OK;  // 'RDY_OK' compiles to '0' - Just ChibiOS syntax
+}
+
+/**
+ * Blue LED blinker thread, times are in milliseconds.
+ */
+static WORKING_AREA(waThread2, 128);
+static msg_t Thread2(void *arg) {
+   (void)arg;
+
+   // infinite loop
+   while (1) {
+       palTogglePad(GPIOC, 8); /* Another method for Pin control
+                                * It basically compiles into an XOR
+                                */
+       chThdSleepMilliseconds(10000); // sleep for 500ms
+   }
+
+   return RDY_OK;
+}
+
+/**
+ * ADC
+ */
+static WORKING_AREA(waThread3, 128);
+static uint32_t Thread3(void *arg) {
+	(void)arg;
+	
+	while(1) {
+		
+	}
+	
+	return RDY_OK;
+}
+
+void init_mutex() {
+	Mutex *adc_mutex;
+	chMtxInit(adc_mutex);
+	data = (1 << 8); // Set to one
+	data = ~(1 << 8); // set to zero
+	
+}
+
+/**
+ * Serial driver struct
+ * Struct comes from serial_lld.h template
+ * Information on this struct and other HAL specific structs can be found online at:
+ *
+ * http://chibios.sourceforge.net/docs/hal_stm32f4xx_rm/struct_serial_config.html
+ *
+ * Unfortunately Giovanni doesn't have a document for the stm32f0xx series, so 
+ * many of the structs need to be cross-referenced with the STM32F0 Reference Manual
+ * to account for unnecessary members.
+ * 
+ */
+static const SerialConfig serialConfig = {
+    115200,                 // baud rate - only required member in struct
+    0,                      // Initialization value for the CR1 register 
+    (USART_CR2_STOP1_BITS    
+    | USART_CR2_LINEN),     // Initialization value for the CR2 register
+    0                       // Initialization value for the CR3 register 
+};
+
+
+/**
+ * Application entry point.
+ */
+int main(void) {
+    /**
+     * System initializations.
+     * - halInit() - HAL initialization, this also initializes the configured device drivers
+     *   and performs the board-specific initializations. Information can be found at:
+     *      ~ChibiOS/RT->Modules->HAL->HAL Driver
+     * - chSysInit() - Kernel initialization, the main() function becomes a thread and the
+     *   RTOS is active. It is given Normal Priority by default. Information can be found at:
+     *      ~ChibiOS/RT->Modules->Kernel->Base Kernel Services->System Management
+     */
+    halInit();
+    chSysInit();
+
+    /**
+     * Activates the serial driver 1 using the specified driver configuration.
+     * PA9 and PA10 are routed to USART1. Information on the Serial Driver can
+     * be found online at:
+     *   ~ChibiOS/RT->Modules->HAL->Serial Driver
+     */
+    sdStart(&SD1, &serialConfig);
+
+    /* Functions for initializing GPIOA Port in AF Mode */
+    palSetPadMode(GPIOA, 9, PAL_MODE_ALTERNATE(1));     // USART1 TX
+    palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(1));    // USART1 RX
+
+    /**
+     * Creates the blinking LED threads. These will be explained in more detail
+     * in the lab. Threads are immediately marked as 'ready' when then are created.
+     * More information is available online at:
+     *  ~ChibiOS/RT->Modules->Kernel->Base Kernel Services->Threads
+     */
+    chThdCreateStatic(waThread1, sizeof(waThread1), NORMALPRIO, Thread1, NULL);
+    chThdCreateStatic(waThread2, sizeof(waThread2), NORMALPRIO, Thread2, NULL);
+
+    /**
+     * Normal main() thread activity, in this demo it does nothing except
+     * sleep in a loop and check the button state, when the button is
+     * pressed the Timeout is called with output on the serial driver 1.
+     */
+    while (1) {
+        if (palReadPad(GPIOA, GPIOA_BUTTON)) { // function to read GPIO Pin - no need to configure manually as input
+
+            /* The chnWriteTimeout() function is another that will be explained in lab.
+             * It belongs to a very interesting interface called the 'Abstract I/O Channel'. 
+             * Basically the entire application waits until the data is transfered from the
+             * buffer to the serial I/O Channel at the baud rate specified for SD1.
+             * More information can be found online at:
+             *   ~ChibiOS/RT->Modules->HAL->Abstract I/O Channel
+             */
+            chnWriteTimeout(&SD1, (const uint8_t*) "Hello World!", 12, TIME_IMMEDIATE);
+        }
+        chThdSleepMilliseconds(500); // Remember that main() becomes a thread when we call chSysInit();
+    }
+
+    return 0;
+}

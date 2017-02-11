@@ -1,0 +1,18 @@
+(module heat_sink1 (layer F.Cu) (tedit 56B2E1D9)
+  (fp_text reference REF** (at 2.413 1.27) (layer F.SilkS) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text value heat_sink1 (at 3.683 -30.734) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_line (start 11.684 0) (end 11.684 -8.509) (layer F.SilkS) (width 0.15))
+  (fp_line (start 11.684 -29.21) (end 11.684 -20.701) (layer F.SilkS) (width 0.15))
+  (fp_line (start 0 -29.21) (end 11.557 -29.21) (layer F.SilkS) (width 0.15))
+  (fp_line (start 11.557 -29.21) (end 11.684 -29.21) (layer F.SilkS) (width 0.15))
+  (fp_line (start 2.54 -20.701) (end 2.54 -8.509) (layer F.SilkS) (width 0.15))
+  (fp_line (start 10.16 -20.701) (end 11.684 -20.701) (layer F.SilkS) (width 0.15))
+  (fp_line (start 2.54 -20.6756) (end 10.16 -20.6756) (layer F.SilkS) (width 0.15))
+  (fp_line (start 2.6416 -8.5344) (end 11.5824 -8.5344) (layer F.SilkS) (width 0.15))
+  (fp_line (start 0 -29.21) (end 0 0) (layer F.SilkS) (width 0.15))
+  (fp_line (start 0 0) (end 11.684 0) (layer F.SilkS) (width 0.15))
+)

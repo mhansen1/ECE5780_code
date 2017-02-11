@@ -1,0 +1,16 @@
+08:39:06 **** Build of configuration Default for project ChibiOS_Demo ****
+make -j4 all 
+The system cannot find the path specified.
+Compiling main.c
+Linking build/ChibiOS_Demo2.elf
+Creating build/ChibiOS_Demo2.hex
+Creating build/ChibiOS_Demo2.bin
+Creating build/ChibiOS_Demo2.dmp
+ECHO is off.
+   text	   data	    bss	    dec	    hex	filename
+   5792	    192	   3328	   9312	   2460	build/ChibiOS_Demo2.elf
+ECHO is off.
+Done
+
+08:39:08 Build Finished (took 1s.894ms)
+

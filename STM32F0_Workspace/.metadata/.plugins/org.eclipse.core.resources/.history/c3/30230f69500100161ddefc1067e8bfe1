@@ -1,0 +1,65 @@
+#ifndef ARM_MATH_CM4
+#define ARM_MATH_CM4
+
+#include <stdio.h>
+#include "stm32f4xx.h"
+#include "stm32f4_discovery.h"
+#include "i2c_init.h"
+#include "arm_math.h"
+#include "math_helper.h"
+
+//#define PI 3.14159265359
+#define coeff_gyro 0.007633587786f // 1/(binary->decimal)
+#define coeff_accel 0.000598571777f // g/(binary->decimal)
+#define g -9.807f
+
+// Data from IMU
+uint8_t raw_data[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
+// IMU raw data
+int16_t x_accel;
+int16_t y_accel;
+int16_t z_accel;
+int16_t x_gyro;
+int16_t y_gyro;
+int16_t z_gyro;
+
+// Matrix form of data.
+arm_matrix_instance_f32 angle_mat;
+arm_matrix_instance_f32 vel_mat;
+arm_matrix_instance_f32 pos_mat;
+float32_t angle_data[3];
+float32_t accel_data[3];
+float32_t vel_data[3];
+float32_t pos_data[3];
+
+// Create a temporary matrix for an intermediate place holder.
+// Creating it in the init to avoid the work of making the matrix
+// over and over again.
+arm_matrix_instance_f32 temp_mat;
+float32_t temp_data[3];
+
+
+// Constants
+float32_t dt; // Time between updates
+// Constant matrix for gravity. Technically speaking, gravity varies
+// from point to point (Salt Lake will have different gravity than at 
+// sea level). However, there isn't really a way to accurately get this
+// data (accelerometer measures in reference to g), so going to
+// assume that gravity is constant and equal to 9.807 m/s/s
+// The reason that this could be an important point is because dead-
+// reckoning is being used for kinetic data, and variations in data can 
+// cause an accumulation in errors as the rigid body moves more and
+// more.
+arm_matrix_instance_f32 g_mat;
+float32_t g_vec[3] = {0,0,g};
+
+void init_imu(uint32_t dt);
+void imu_update();
+void body_to_earth(arm_matrix_instance_f32 *result, arm_matrix_instance_f32 *angles, arm_matrix_instance_f32 *vector_data);
+void earth_to_body(arm_matrix_instance_f32 *result, arm_matrix_instance_f32 *angles, arm_matrix_instance_f32 *vector_data);
+void TIM2_IRQHandler(void);
+void start_imu();
+void stop_imu();
+
+#endif

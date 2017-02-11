@@ -1,0 +1,11 @@
+19:56:58 **** Build of configuration Debug for project motor_control ****
+make all 
+'Invoking: Cross ARM GNU Print Size'
+arm-none-eabi-size --format=berkeley "motor_control.elf"
+   text	   data	    bss	    dec	    hex	filename
+   2512	     80	    296	   2888	    b48	motor_control.elf
+'Finished building: motor_control.siz'
+' '
+
+19:57:00 Build Finished (took 1s.658ms)
+

@@ -1,0 +1,11 @@
+19:00:00 **** Build of configuration Debug for project Lab4 ****
+make all 
+'Invoking: Cross ARM GNU Print Size'
+arm-none-eabi-size --format=berkeley "Lab4.elf"
+   text	   data	    bss	    dec	    hex	filename
+   1780	     76	    268	   2124	    84c	Lab4.elf
+'Finished building: Lab4.siz'
+' '
+
+19:00:00 Build Finished (took 853ms)
+

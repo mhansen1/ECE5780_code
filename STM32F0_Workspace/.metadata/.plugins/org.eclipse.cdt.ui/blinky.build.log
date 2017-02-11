@@ -1,0 +1,173 @@
+14:27:44 **** Incremental Build of configuration Debug for project blinky ****
+"C:\\Program" Files "(x86)\\GNU" Tools ARM "Embedded\\5.2" "2015q4\\bin\\make.exe" all 
+'Building file: ../stm32f0-discovery/stm32f0_discovery.c'
+'Invoking: Cross GCC Compiler'
+arm-none-eabi-gcc -DUSE_STD_PERIPH_DRIVER -I"C:/Users/Max/Documents/School/Classes/ECE5780/STM32F0_Workspace/blinky/inc" -I"C:\Users\Max\Documents\School\Classes\ECE5780\STM32F0_Workspace\STM32F0xx_StdPeriph_Lib_V1.5.0\Libraries\CMSIS\Device\ST\STM32F0xx\Include" -I"C:\Users\Max\Documents\School\Classes\ECE5780\STM32F0_Workspace\STM32F0xx_StdPeriph_Lib_V1.5.0\Libraries\CMSIS\Include" -I"C:\Users\Max\Documents\School\Classes\ECE5780\STM32F0_Workspace\STM32F0-Discovery_FW_V1.0.0\Utilities\STM32F0-Discovery" -I"C:\Users\Max\Documents\School\Classes\ECE5780\STM32F0_Workspace\STM32F0xx_StdPeriph_Lib_V1.5.0\Libraries\STM32F0xx_StdPeriph_Driver\inc" -O0 -g3 -Wall -c -fmessage-length=0 -mthumb -mcpu=cortex-m0 -MMD -MP -MF"stm32f0-discovery/stm32f0_discovery.d" -MT"stm32f0-discovery/stm32f0_discovery.o" -o "stm32f0-discovery/stm32f0_discovery.o" "../stm32f0-discovery/stm32f0_discovery.c"
+In file included from ../stm32f0-discovery/stm32f0_discovery.c:30:0:
+../stm32f0-discovery/stm32f0_discovery.h:85:42: error: 'GPIO_Pin_9' undeclared here (not in a function)
+ #define LED3_PIN                         GPIO_Pin_9
+                                          ^
+../stm32f0-discovery/stm32f0_discovery.c:74:34: note: in expansion of macro 'LED3_PIN'
+ const uint16_t GPIO_PIN[LEDn] = {LED3_PIN, LED4_PIN};
+                                  ^
+../stm32f0-discovery/stm32f0_discovery.h:89:42: error: 'GPIO_Pin_8' undeclared here (not in a function)
+ #define LED4_PIN                         GPIO_Pin_8
+                                          ^
+../stm32f0-discovery/stm32f0_discovery.c:74:44: note: in expansion of macro 'LED4_PIN'
+ const uint16_t GPIO_PIN[LEDn] = {LED3_PIN, LED4_PIN};
+                                            ^
+../stm32f0-discovery/stm32f0_discovery.h:87:42: error: 'RCC_AHBPeriph_GPIOC' undeclared here (not in a function)
+ #define LED3_GPIO_CLK                    RCC_AHBPeriph_GPIOC
+                                          ^
+../stm32f0-discovery/stm32f0_discovery.c:75:34: note: in expansion of macro 'LED3_GPIO_CLK'
+ const uint32_t GPIO_CLK[LEDn] = {LED3_GPIO_CLK, LED4_GPIO_CLK};
+                                  ^
+../stm32f0-discovery/stm32f0_discovery.h:105:40: error: 'GPIO_Pin_0' undeclared here (not in a function)
+ #define USER_BUTTON_PIN                GPIO_Pin_0
+                                        ^
+../stm32f0-discovery/stm32f0_discovery.c:79:39: note: in expansion of macro 'USER_BUTTON_PIN'
+ const uint16_t BUTTON_PIN[BUTTONn] = {USER_BUTTON_PIN}; 
+                                       ^
+../stm32f0-discovery/stm32f0_discovery.h:107:40: error: 'RCC_AHBPeriph_GPIOA' undeclared here (not in a function)
+ #define USER_BUTTON_GPIO_CLK           RCC_AHBPeriph_GPIOA
+                                        ^
+../stm32f0-discovery/stm32f0_discovery.c:81:39: note: in expansion of macro 'USER_BUTTON_GPIO_CLK'
+ const uint32_t BUTTON_CLK[BUTTONn] = {USER_BUTTON_GPIO_CLK};
+                                       ^
+../stm32f0-discovery/stm32f0_discovery.h:108:40: error: 'EXTI_Line0' undeclared here (not in a function)
+ #define USER_BUTTON_EXTI_LINE          EXTI_Line0
+                                        ^
+../stm32f0-discovery/stm32f0_discovery.c:83:45: note: in expansion of macro 'USER_BUTTON_EXTI_LINE'
+ const uint16_t BUTTON_EXTI_LINE[BUTTONn] = {USER_BUTTON_EXTI_LINE};
+                                             ^
+../stm32f0-discovery/stm32f0_discovery.h:109:40: error: 'EXTI_PortSourceGPIOA' undeclared here (not in a function)
+ #define USER_BUTTON_EXTI_PORT_SOURCE   EXTI_PortSourceGPIOA
+                                        ^
+../stm32f0-discovery/stm32f0_discovery.c:85:47: note: in expansion of macro 'USER_BUTTON_EXTI_PORT_SOURCE'
+ const uint16_t BUTTON_PORT_SOURCE[BUTTONn] = {USER_BUTTON_EXTI_PORT_SOURCE};
+                                               ^
+../stm32f0-discovery/stm32f0_discovery.h:110:40: error: 'EXTI_PinSource0' undeclared here (not in a function)
+ #define USER_BUTTON_EXTI_PIN_SOURCE    EXTI_PinSource0
+                                        ^
+../stm32f0-discovery/stm32f0_discovery.c:87:46: note: in expansion of macro 'USER_BUTTON_EXTI_PIN_SOURCE'
+ const uint16_t BUTTON_PIN_SOURCE[BUTTONn] = {USER_BUTTON_EXTI_PIN_SOURCE}; 
+                                              ^
+../stm32f0-discovery/stm32f0_discovery.c: In function 'STM_EVAL_LEDInit':
+../stm32f0-discovery/stm32f0_discovery.c:118:3: error: unknown type name 'GPIO_InitTypeDef'
+   GPIO_InitTypeDef  GPIO_InitStructure;
+   ^
+../stm32f0-discovery/stm32f0_discovery.c:121:3: warning: implicit declaration of function 'RCC_AHBPeriphClockCmd' [-Wimplicit-function-declaration]
+   RCC_AHBPeriphClockCmd(GPIO_CLK[Led], ENABLE);
+   ^
+../stm32f0-discovery/stm32f0_discovery.c:124:21: error: request for member 'GPIO_Pin' in something not a structure or union
+   GPIO_InitStructure.GPIO_Pin = GPIO_PIN[Led];
+                     ^
+../stm32f0-discovery/stm32f0_discovery.c:125:21: error: request for member 'GPIO_Mode' in something not a structure or union
+   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+                     ^
+../stm32f0-discovery/stm32f0_discovery.c:125:34: error: 'GPIO_Mode_OUT' undeclared (first use in this function)
+   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+                                  ^
+../stm32f0-discovery/stm32f0_discovery.c:125:34: note: each undeclared identifier is reported only once for each function it appears in
+../stm32f0-discovery/stm32f0_discovery.c:126:21: error: request for member 'GPIO_OType' in something not a structure or union
+   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+                     ^
+../stm32f0-discovery/stm32f0_discovery.c:126:35: error: 'GPIO_OType_PP' undeclared (first use in this function)
+   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+                                   ^
+../stm32f0-discovery/stm32f0_discovery.c:127:21: error: request for member 'GPIO_PuPd' in something not a structure or union
+   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+                     ^
+../stm32f0-discovery/stm32f0_discovery.c:127:34: error: 'GPIO_PuPd_NOPULL' undeclared (first use in this function)
+   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+                                  ^
+../stm32f0-discovery/stm32f0_discovery.c:128:21: error: request for member 'GPIO_Speed' in something not a structure or union
+   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+                     ^
+../stm32f0-discovery/stm32f0_discovery.c:128:35: error: 'GPIO_Speed_50MHz' undeclared (first use in this function)
+   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+                                   ^
+../stm32f0-discovery/stm32f0_discovery.c:129:3: warning: implicit declaration of function 'GPIO_Init' [-Wimplicit-function-declaration]
+   GPIO_Init(GPIO_PORT[Led], &GPIO_InitStructure);
+   ^
+../stm32f0-discovery/stm32f0_discovery.c: In function 'STM_EVAL_PBInit':
+../stm32f0-discovery/stm32f0_discovery.c:185:3: error: unknown type name 'GPIO_InitTypeDef'
+   GPIO_InitTypeDef GPIO_InitStructure;
+   ^
+../stm32f0-discovery/stm32f0_discovery.c:186:3: error: unknown type name 'EXTI_InitTypeDef'
+   EXTI_InitTypeDef EXTI_InitStructure;
+   ^
+../stm32f0-discovery/stm32f0_discovery.c:187:3: error: unknown type name 'NVIC_InitTypeDef'
+   NVIC_InitTypeDef NVIC_InitStructure;
+   ^
+../stm32f0-discovery/stm32f0_discovery.c:191:3: warning: implicit declaration of function 'RCC_APB2PeriphClockCmd' [-Wimplicit-function-declaration]
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+   ^
+../stm32f0-discovery/stm32f0_discovery.c:191:26: error: 'RCC_APB2Periph_SYSCFG' undeclared (first use in this function)
+   RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+                          ^
+../stm32f0-discovery/stm32f0_discovery.c:194:21: error: request for member 'GPIO_Mode' in something not a structure or union
+   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+                     ^
+../stm32f0-discovery/stm32f0_discovery.c:194:34: error: 'GPIO_Mode_IN' undeclared (first use in this function)
+   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+                                  ^
+../stm32f0-discovery/stm32f0_discovery.c:195:21: error: request for member 'GPIO_PuPd' in something not a structure or union
+   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+                     ^
+../stm32f0-discovery/stm32f0_discovery.c:195:34: error: 'GPIO_PuPd_NOPULL' undeclared (first use in this function)
+   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+                                  ^
+../stm32f0-discovery/stm32f0_discovery.c:196:21: error: request for member 'GPIO_Pin' in something not a structure or union
+   GPIO_InitStructure.GPIO_Pin = BUTTON_PIN[Button];
+                     ^
+../stm32f0-discovery/stm32f0_discovery.c:202:5: warning: implicit declaration of function 'SYSCFG_EXTILineConfig' [-Wimplicit-function-declaration]
+     SYSCFG_EXTILineConfig(BUTTON_PORT_SOURCE[Button], BUTTON_PIN_SOURCE[Button]);
+     ^
+../stm32f0-discovery/stm32f0_discovery.c:205:23: error: request for member 'EXTI_Line' in something not a structure or union
+     EXTI_InitStructure.EXTI_Line = BUTTON_EXTI_LINE[Button];
+                       ^
+../stm32f0-discovery/stm32f0_discovery.c:206:23: error: request for member 'EXTI_Mode' in something not a structure or union
+     EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+                       ^
+../stm32f0-discovery/stm32f0_discovery.c:206:36: error: 'EXTI_Mode_Interrupt' undeclared (first use in this function)
+     EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+                                    ^
+../stm32f0-discovery/stm32f0_discovery.c:209:25: error: request for member 'EXTI_Trigger' in something not a structure or union
+       EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+                         ^
+../stm32f0-discovery/stm32f0_discovery.c:209:41: error: 'EXTI_Trigger_Rising' undeclared (first use in this function)
+       EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+                                         ^
+../stm32f0-discovery/stm32f0_discovery.c:213:25: error: request for member 'EXTI_Trigger' in something not a structure or union
+       EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;    
+                         ^
+../stm32f0-discovery/stm32f0_discovery.c:213:41: error: 'EXTI_Trigger_Falling' undeclared (first use in this function)
+       EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;    
+                                         ^
+../stm32f0-discovery/stm32f0_discovery.c:215:23: error: request for member 'EXTI_LineCmd' in something not a structure or union
+     EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+                       ^
+../stm32f0-discovery/stm32f0_discovery.c:216:5: warning: implicit declaration of function 'EXTI_Init' [-Wimplicit-function-declaration]
+     EXTI_Init(&EXTI_InitStructure);
+     ^
+../stm32f0-discovery/stm32f0_discovery.c:219:23: error: request for member 'NVIC_IRQChannel' in something not a structure or union
+     NVIC_InitStructure.NVIC_IRQChannel = BUTTON_IRQn[Button];
+                       ^
+../stm32f0-discovery/stm32f0_discovery.c:220:23: error: request for member 'NVIC_IRQChannelPriority' in something not a structure or union
+     NVIC_InitStructure.NVIC_IRQChannelPriority = 0x03;
+                       ^
+../stm32f0-discovery/stm32f0_discovery.c:221:23: error: request for member 'NVIC_IRQChannelCmd' in something not a structure or union
+     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+                       ^
+../stm32f0-discovery/stm32f0_discovery.c:223:5: warning: implicit declaration of function 'NVIC_Init' [-Wimplicit-function-declaration]
+     NVIC_Init(&NVIC_InitStructure); 
+     ^
+../stm32f0-discovery/stm32f0_discovery.c: In function 'STM_EVAL_PBGetState':
+../stm32f0-discovery/stm32f0_discovery.c:237:10: warning: implicit declaration of function 'GPIO_ReadInputDataBit' [-Wimplicit-function-declaration]
+   return GPIO_ReadInputDataBit(BUTTON_PORT[Button], BUTTON_PIN[Button]);
+          ^
+make: *** [stm32f0-discovery/stm32f0_discovery.o] Error 1
+
+14:27:44 Build Finished (took 423ms)
+

@@ -1,0 +1,16 @@
+(module heat_sink2 (layer F.Cu) (tedit 56B3EC99)
+  (fp_text reference REF** (at 2.159 -17.272) (layer F.SilkS) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text value heat_sink2 (at 3.937 1.143) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text user FRONT (at 24.13 -7.239 90) (layer F.SilkS)
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_line (start 0 0) (end 0 -16) (layer F.SilkS) (width 0.15))
+  (fp_line (start 0 -16) (end 25 -16) (layer F.SilkS) (width 0.15))
+  (fp_line (start 25 -16) (end 25 0) (layer F.SilkS) (width 0.15))
+  (fp_line (start 25 0) (end 0 0) (layer F.SilkS) (width 0.15))
+  (pad 1 thru_hole circle (at 12.5 -8) (size 4.1 4.1) (drill 4) (layers *.Cu *.Mask F.SilkS))
+)

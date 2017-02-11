@@ -1,0 +1,41 @@
+R1 (PF1262): A high power (20W) resistor. The value would be set at 0.5 Ohms. This is
+because the max current that should be going through it is 5A (2.5A repetetive  [80% 
+on per 10ms] through each channel). The ideal value would be 0.72 Ohms. Since that is
+not a standard value, 0.5 Ohms is probably best since it captures the all current values.
+
+On the current sensor output, may need a large resistor to limit current into the STMF0
+but the STMF0 has high impedance input, so it may be fine as is.
+
+Changed the diodes from being in series with the L298 to being in parallel (and with a 
+10k resistor to limit current). These are used to indicate the state of the motor inputs.
+
+Fixed the flyback diodes (and changed their direction to try and make it more 
+readable).
+
+On the capacitors, they are at 200nF. This is because the L298 has a suggested 
+capacitor value of 100nF. With the LEDs and other components, I upped it up to 220nF.
+
+Separated the analog and digital pin headers. Might be able to connect the +6V/GND 
+header to the current voltage sensor since they're all analog, but I'm not sure on that, 
+so I'm keeping them separate, just in case.
+
+On the temperature sensor, the inputs/outputs should be tied to the pullup resistor 
+correctly. Using the O.S. (interrupt pin) so I can use it if I can/want to for when the
+current sensor resistor or L298 get too hot.
+
+Originally had a BJT and op amp for a current limiter. Remembered about TVS 
+diodes today and realized that it would probably work better. It would also be 
+easier to test and take out of the final circuit since it's just in parallel with the 
+sense resistor. Would need to find a TVS with a break down voltage of about 
+2.5 or 3 volts and simulate it in a program such as PSpice. There is also a picture 
+of the voltage and current waveform from testing a TVS is just found really 
+quick. The red signal is the input to the circuit, blue is the voltage across the TVS, 
+and green is the current through the TVS. This solution would allow current to 
+continue to flow once the cut off is reached, as well.
+(TVS = transient voltage suppressor)
+
+I also cleared up some of the power wires to try and make the schematic more 
+readable. The connections are now made by labelling the nodes and putting
+the power symbol. (Not sure which would be better, or if they're the same in 
+KiCad [not sure if node labelling works the same as in other simulation 
+programs. Would assume that it does], so I put both methods, just in case).

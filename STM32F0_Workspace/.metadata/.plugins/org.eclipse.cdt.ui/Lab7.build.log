@@ -1,0 +1,7 @@
+08:38:42 **** Incremental Build of configuration Default for project Lab7 ****
+make.exe all 
+The system cannot find the path specified.
+make.exe: Nothing to be done for `all'.
+
+08:38:47 Build Finished (took 4s.954ms)
+

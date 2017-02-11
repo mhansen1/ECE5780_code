@@ -1,0 +1,11 @@
+15:23:17 **** Incremental Build of configuration Debug for project toolchain_test ****
+make all 
+'Invoking: Cross ARM GNU Print Size'
+arm-none-eabi-size --format=berkeley "toolchain_test.elf"
+   text	   data	    bss	    dec	    hex	filename
+   5317	    176	    416	   5909	   1715	toolchain_test.elf
+'Finished building: toolchain_test.siz'
+' '
+
+15:23:17 Build Finished (took 337ms)
+

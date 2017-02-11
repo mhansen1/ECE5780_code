@@ -1,0 +1,179 @@
+23:33:50 **** Incremental Build of configuration Debug for project quadcopter_project ****
+make all 
+'Building file: ../src/i2c_init.c'
+'Invoking: Cross ARM C Compiler'
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -fno-move-loop-invariants -Wall -Wextra  -g3 -DDEBUG -DUSE_FULL_ASSERT -DTRACE -DOS_USE_TRACE_SEMIHOSTING_DEBUG -DSTM32F407xx -DUSE_HAL_DRIVER -DHSE_VALUE=8000000 -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32f4-hal" -std=gnu11 -MMD -MP -MF"src/i2c_init.d" -MT"src/i2c_init.o" -c -o "src/i2c_init.o" "../src/i2c_init.c"
+../src/i2c_init.c: In function 'i2c_init':
+../src/i2c_init.c:27:2: warning: implicit declaration of function 'RCC_AHB1PeriphClockCmd' [-Wimplicit-function-declaration]
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+  ^
+../src/i2c_init.c:27:25: error: 'RCC_AHB1Periph_GPIOB' undeclared (first use in this function)
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+                         ^
+../src/i2c_init.c:27:25: note: each undeclared identifier is reported only once for each function it appears in
+../src/i2c_init.c:33:21: error: 'GPIO_InitTypeDef {aka struct <anonymous>}' has no member named 'GPIO_Mode'
+  GPIO_InitStruct_I2C.GPIO_Mode=GPIO_Mode_AF;
+                     ^
+../src/i2c_init.c:33:32: error: 'GPIO_Mode_AF' undeclared (first use in this function)
+  GPIO_InitStruct_I2C.GPIO_Mode=GPIO_Mode_AF;
+                                ^
+../src/i2c_init.c:34:21: error: 'GPIO_InitTypeDef {aka struct <anonymous>}' has no member named 'GPIO_OType'
+  GPIO_InitStruct_I2C.GPIO_OType=GPIO_OType_OD;
+                     ^
+../src/i2c_init.c:34:33: error: 'GPIO_OType_OD' undeclared (first use in this function)
+  GPIO_InitStruct_I2C.GPIO_OType=GPIO_OType_OD;
+                                 ^
+../src/i2c_init.c:35:21: error: 'GPIO_InitTypeDef {aka struct <anonymous>}' has no member named 'GPIO_Pin'
+  GPIO_InitStruct_I2C.GPIO_Pin = (GPIO_Pin_8 | GPIO_Pin_9);
+                     ^
+../src/i2c_init.c:35:34: error: 'GPIO_Pin_8' undeclared (first use in this function)
+  GPIO_InitStruct_I2C.GPIO_Pin = (GPIO_Pin_8 | GPIO_Pin_9);
+                                  ^
+../src/i2c_init.c:35:47: error: 'GPIO_Pin_9' undeclared (first use in this function)
+  GPIO_InitStruct_I2C.GPIO_Pin = (GPIO_Pin_8 | GPIO_Pin_9);
+                                               ^
+../src/i2c_init.c:36:21: error: 'GPIO_InitTypeDef {aka struct <anonymous>}' has no member named 'GPIO_PuPd'
+  GPIO_InitStruct_I2C.GPIO_PuPd = GPIO_PuPd_UP;
+                     ^
+../src/i2c_init.c:36:34: error: 'GPIO_PuPd_UP' undeclared (first use in this function)
+  GPIO_InitStruct_I2C.GPIO_PuPd = GPIO_PuPd_UP;
+                                  ^
+../src/i2c_init.c:37:21: error: 'GPIO_InitTypeDef {aka struct <anonymous>}' has no member named 'GPIO_Speed'
+  GPIO_InitStruct_I2C.GPIO_Speed = GPIO_Speed_50MHz;
+                     ^
+../src/i2c_init.c:37:35: error: 'GPIO_Speed_50MHz' undeclared (first use in this function)
+  GPIO_InitStruct_I2C.GPIO_Speed = GPIO_Speed_50MHz;
+                                   ^
+../src/i2c_init.c:38:2: warning: implicit declaration of function 'GPIO_Init' [-Wimplicit-function-declaration]
+  GPIO_Init(GPIOB, &GPIO_InitStruct_I2C);
+  ^
+../src/i2c_init.c:41:2: warning: implicit declaration of function 'GPIO_PinAFConfig' [-Wimplicit-function-declaration]
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1); // SDA = PB9
+  ^
+../src/i2c_init.c:41:26: error: 'GPIO_PinSource9' undeclared (first use in this function)
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1); // SDA = PB9
+                          ^
+../src/i2c_init.c:41:43: error: 'GPIO_AF_I2C1' undeclared (first use in this function)
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1); // SDA = PB9
+                                           ^
+../src/i2c_init.c:42:26: error: 'GPIO_PinSource8' undeclared (first use in this function)
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_I2C1); // SCL = PB8
+                          ^
+../src/i2c_init.c:45:2: warning: implicit declaration of function 'RCC_APB1PeriphClockCmd' [-Wimplicit-function-declaration]
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+  ^
+../src/i2c_init.c:45:25: error: 'RCC_APB1Periph_I2C1' undeclared (first use in this function)
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+                         ^
+../src/i2c_init.c:54:2: warning: implicit declaration of function 'I2C_StructInit' [-Wimplicit-function-declaration]
+  I2C_StructInit(&I2C_InitStruct);
+  ^
+../src/i2c_init.c:55:16: error: 'I2C_InitTypeDef {aka struct <anonymous>}' has no member named 'I2C_ClockSpeed'
+  I2C_InitStruct.I2C_ClockSpeed = 400000;
+                ^
+../src/i2c_init.c:56:16: error: 'I2C_InitTypeDef {aka struct <anonymous>}' has no member named 'I2C_AcknowledgedAddress'
+  I2C_InitStruct.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+                ^
+../src/i2c_init.c:56:43: error: 'I2C_AcknowledgedAddress_7bit' undeclared (first use in this function)
+  I2C_InitStruct.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+                                           ^
+../src/i2c_init.c:57:16: error: 'I2C_InitTypeDef {aka struct <anonymous>}' has no member named 'I2C_Mode'
+  I2C_InitStruct.I2C_Mode = I2C_Mode_I2C;
+                ^
+../src/i2c_init.c:57:28: error: 'I2C_Mode_I2C' undeclared (first use in this function)
+  I2C_InitStruct.I2C_Mode = I2C_Mode_I2C;
+                            ^
+../src/i2c_init.c:58:16: error: 'I2C_InitTypeDef {aka struct <anonymous>}' has no member named 'I2C_Ack'
+  I2C_InitStruct.I2C_Ack = I2C_Ack_Enable;
+                ^
+../src/i2c_init.c:58:27: error: 'I2C_Ack_Enable' undeclared (first use in this function)
+  I2C_InitStruct.I2C_Ack = I2C_Ack_Enable;
+                           ^
+../src/i2c_init.c:59:16: error: 'I2C_InitTypeDef {aka struct <anonymous>}' has no member named 'I2C_DutyCycle'
+  I2C_InitStruct.I2C_DutyCycle = I2C_DutyCycle_2;
+                ^
+../src/i2c_init.c:59:33: error: 'I2C_DutyCycle_2' undeclared (first use in this function)
+  I2C_InitStruct.I2C_DutyCycle = I2C_DutyCycle_2;
+                                 ^
+../src/i2c_init.c:60:16: error: 'I2C_InitTypeDef {aka struct <anonymous>}' has no member named 'I2C_OwnAddress1'
+  I2C_InitStruct.I2C_OwnAddress1 = 0x68;
+                ^
+../src/i2c_init.c:61:2: warning: implicit declaration of function 'I2C_Init' [-Wimplicit-function-declaration]
+  I2C_Init(I2C1, &I2C_InitStruct);
+  ^
+../src/i2c_init.c:64:2: warning: implicit declaration of function 'I2C_Cmd' [-Wimplicit-function-declaration]
+  I2C_Cmd(I2C1, ENABLE);
+  ^
+../src/i2c_init.c: In function 'writeByteToI2C':
+../src/i2c_init.c:81:9: warning: implicit declaration of function 'I2C_GetFlagStatus' [-Wimplicit-function-declaration]
+  while (I2C_GetFlagStatus(I2C1, I2C_FLAG_BUSY));
+         ^
+../src/i2c_init.c:83:2: warning: implicit declaration of function 'I2C_GenerateSTART' [-Wimplicit-function-declaration]
+  I2C_GenerateSTART(I2C1, ENABLE);
+  ^
+../src/i2c_init.c:86:9: warning: implicit declaration of function 'I2C_CheckEvent' [-Wimplicit-function-declaration]
+  while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT));
+         ^
+../src/i2c_init.c:86:30: error: 'I2C_EVENT_MASTER_MODE_SELECT' undeclared (first use in this function)
+  while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT));
+                              ^
+../src/i2c_init.c:89:2: warning: implicit declaration of function 'I2C_Send7bitAddress' [-Wimplicit-function-declaration]
+  I2C_Send7bitAddress(I2C1, (uint8_t) address<<1, I2C_Direction_Transmitter);
+  ^
+../src/i2c_init.c:89:50: error: 'I2C_Direction_Transmitter' undeclared (first use in this function)
+  I2C_Send7bitAddress(I2C1, (uint8_t) address<<1, I2C_Direction_Transmitter);
+                                                  ^
+../src/i2c_init.c:91:2: warning: implicit declaration of function 'STM_EVAL_LEDOn' [-Wimplicit-function-declaration]
+  STM_EVAL_LEDOn(LED5);
+  ^
+../src/i2c_init.c:91:17: error: 'LED5' undeclared (first use in this function)
+  STM_EVAL_LEDOn(LED5);
+                 ^
+../src/i2c_init.c:93:30: error: 'I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED' undeclared (first use in this function)
+  while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+                              ^
+../src/i2c_init.c:95:2: warning: implicit declaration of function 'I2C_SendData' [-Wimplicit-function-declaration]
+  I2C_SendData(I2C1, (uint8_t) (REG));
+  ^
+../src/i2c_init.c:97:2: warning: implicit declaration of function 'STM_EVAL_LEDOff' [-Wimplicit-function-declaration]
+  STM_EVAL_LEDOff(LED5);
+  ^
+../src/i2c_init.c:99:30: error: 'I2C_EVENT_MASTER_BYTE_TRANSMITTED' undeclared (first use in this function)
+  while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+                              ^
+../src/i2c_init.c:105:2: warning: implicit declaration of function 'I2C_GenerateSTOP' [-Wimplicit-function-declaration]
+  I2C_GenerateSTOP(I2C1, ENABLE);
+  ^
+../src/i2c_init.c: In function 'get_data':
+../src/i2c_init.c:128:2: warning: implicit declaration of function 'I2C_AcknowledgeConfig' [-Wimplicit-function-declaration]
+  I2C_AcknowledgeConfig(I2C1, ENABLE);
+  ^
+../src/i2c_init.c:133:30: error: 'I2C_EVENT_MASTER_MODE_SELECT' undeclared (first use in this function)
+  while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT));
+                              ^
+../src/i2c_init.c:136:47: error: 'I2C_Direction_Transmitter' undeclared (first use in this function)
+  I2C_Send7bitAddress(I2C1, MPU_Gyro_Accel<<1, I2C_Direction_Transmitter);
+                                               ^
+../src/i2c_init.c:138:30: error: 'I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED' undeclared (first use in this function)
+  while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+                              ^
+../src/i2c_init.c:142:30: error: 'I2C_EVENT_MASTER_BYTE_TRANSMITTED' undeclared (first use in this function)
+  while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+                              ^
+../src/i2c_init.c:150:47: error: 'I2C_Direction_Receiver' undeclared (first use in this function)
+  I2C_Send7bitAddress(I2C1, MPU_Gyro_Accel<<1, I2C_Direction_Receiver);
+                                               ^
+../src/i2c_init.c:154:31: error: 'I2C_EVENT_MASTER_BYTE_RECEIVED' undeclared (first use in this function)
+   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED));
+                               ^
+../src/i2c_init.c:156:13: warning: implicit declaration of function 'I2C_ReceiveData' [-Wimplicit-function-declaration]
+   data[i] = I2C_ReceiveData(I2C1);
+             ^
+../src/i2c_init.c: At top level:
+../src/i2c_init.c:19:17: warning: 'MPU_Mag' defined but not used [-Wunused-variable]
+ static uint16_t MPU_Mag = 0x0C;
+                 ^
+make: *** [src/i2c_init.o] Error 1
+
+23:33:51 Build Finished (took 1s.917ms)
+

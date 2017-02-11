@@ -1,0 +1,119 @@
+* PSpice Model Editor - Version 16.6.0
+
+*$
+* created using Model Editor release 16.6.0 on 01/21/16 at 20:27
+*DEVICE=d4,D
+.subckt d4 AN CAT 
++ params:
++ AREA=1.0
++ IS=1e-20
++ RS=0.3
++ N=1.1
++ TT=2.541e-9
++ CJO=12e-12
++ VJ=0.7
++ M=0.05
++ BV=2.2
++ IBV=1e-3
+D_d4 AN CAT model22 {area} 
+.model model22 d
++ is={IS}
++ rs={RS}
++ n={N}
++ tt={TT}
++ cjo={CJO}
++ vj={VJ}
++ m={M}
++ bv={BV}
++ ibv={IBV}
+.ends d4
+*$
+* updated using Model Editor release 16.6.0 on 01/21/16 at 19:52
+*DEVICE=d2,D
+.subckt d2 AN CAT 
++ params:
++ AREA=1.0
++ IS=1e-20
++ RS=0.241
++ N=1.1
++ TT=2.541e-9
++ CJO=1.5e-12
++ VJ=0.59
++ M=0.01
++ IBV=1e-3
+D_d2 AN CAT model22 {area} 
+.model model22 d
++ is={IS}
++ rs={RS}
++ n={N}
++ tt={TT}
++ cjo={CJO}
++ vj={VJ}
++ m={M}
++ ibv={IBV}
+.ends d2
+*$
+* created using Model Editor release 16.6.0 on 01/21/16 at 19:50
+*DEVICE=d3,D
+.subckt d3 AN CAT 
++ params:
++ AREA=1.0
++ IS=1.66e-13
++ RS=0.06
++ N=1.1
++ TT=2.541e-9
++ CJO=288e-12
++ VJ=0.53
++ M=0.17
++ BV=2.89
++ IBV=1e-3
+D_d3 AN CAT model22 {area} 
+.model model22 d
++ is={IS}
++ rs={RS}
++ n={N}
++ tt={TT}
++ cjo={CJO}
++ vj={VJ}
++ m={M}
++ bv={BV}
++ ibv={IBV}
+.ends d3
+*$
+* created using Model Editor release 16.6.0 on 01/21/16 at 19:48
+*DEVICE=d1,D
+.subckt d1 AN CAT 
++ params:
++ AREA=1.0
++ IS=1e-20
++ RS=0.138
++ N=1.1
++ TT=2.541e-9
++ CJO=1.5e-12
++ VJ=0.63
++ M=0.01
++ EG=1.11
++ XTI=3
++ KF=0
++ AF=1
++ FC=0.5
++ BV=100
++ IBV=1e-3
+D_d1 AN CAT model22 {area} 
+.model model22 d
++ is={IS}
++ rs={RS}
++ n={N}
++ tt={TT}
++ cjo={CJO}
++ vj={VJ}
++ m={M}
++ eg={EG}
++ xti={XTI}
++ kf={KF}
++ af={AF}
++ fc={FC}
++ bv={BV}
++ ibv={IBV}
+.ends d1
+*$

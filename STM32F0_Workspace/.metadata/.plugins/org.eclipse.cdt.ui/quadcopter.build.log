@@ -1,0 +1,6 @@
+01:51:26 **** Build of configuration Debug for project quadcopter ****
+make all 
+'No tool found that can build the extension specified with the build artifact name all'
+
+01:51:33 Build Finished (took 6s.694ms)
+

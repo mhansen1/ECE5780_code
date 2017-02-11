@@ -1,0 +1,9 @@
+function [ angle ] = acos2( a,h )
+%ACOS2 Summary of this function goes here
+%   Detailed explanation goes here
+
+angle = acos(a/h);
+
+
+end
+
